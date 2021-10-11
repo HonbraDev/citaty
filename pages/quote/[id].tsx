@@ -9,8 +9,31 @@ import { ArrowBack } from "@mui/icons-material";
 import QuoteCard from "../../components/QuoteCard";
 import Head from "next/head";
 import Link from "../../components/Link";
+import { useRouter } from "next/router";
 
 export default function Quote({ quote }: { quote: QuoteType }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    quote = {
+      id: "",
+      year: new Date().getFullYear(),
+      createdAt: "",
+      text: "",
+      person: {
+        id: "",
+        schoolEmail: "",
+        legalName: "",
+        discordId: "",
+        phoneNumber: "",
+        joinedDiscordServer: false,
+        minecraftId: "",
+        discordNickPrefix: "",
+        discordNickname: "",
+        type: "student",
+        active: true,
+      },
+    };
+  }
   return (
     <>
       <Head>
