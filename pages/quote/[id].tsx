@@ -1,14 +1,14 @@
-import getQuote from "../src/database/getQuote";
-import getQuoteIds from "../src/database/getQuoteIds";
-import type { Quote as QuoteType } from "../src/types";
+import getQuote from "../../src/database/getQuote";
+import getQuoteIds from "../../src/database/getQuoteIds";
+import type { Quote as QuoteType } from "../../src/types";
 import type { GetStaticProps, GetStaticPaths } from "next";
-import pageTitle from "../src/pageTitle";
+import pageTitle from "../../src/pageTitle";
 
 import { Box, Typography, IconButton } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
-import QuoteCard from "../components/QuoteCard";
+import QuoteCard from "../../components/QuoteCard";
 import Head from "next/head";
-import Link from "../components/Link";
+import Link from "../../components/Link";
 
 export default function Quote({ quote }: { quote: QuoteType }) {
   return (
@@ -18,19 +18,17 @@ export default function Quote({ quote }: { quote: QuoteType }) {
           "{quote.text}" - {pageTitle}
         </title>
       </Head>
-      <Box sx={{ my: 2 }}>
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <Link href="/">
-            <IconButton>
-              <ArrowBack />
-            </IconButton>
-          </Link>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Citát
-          </Typography>
-        </Box>
-        <QuoteCard quote={quote} disableLink borderless />
+      <Box sx={{ display: "flex", gap: 2 }}>
+        <Link href="/">
+          <IconButton>
+            <ArrowBack />
+          </IconButton>
+        </Link>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Citát
+        </Typography>
       </Box>
+      <QuoteCard quote={quote} disableLink borderless />
     </>
   );
 }
@@ -51,6 +49,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: ids.map((id) => ({ params: { id } })),
-    fallback: false,
+    fallback: true,
   };
 };

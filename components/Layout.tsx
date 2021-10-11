@@ -18,7 +18,9 @@ export default function Layout({ children }: { children: any }) {
   return (
     <>
       <Box sx={{ pb: showNav ? 7 : undefined }}>
-        <Container maxWidth="sm">{children}</Container>
+        <Container maxWidth="sm">
+          <Box sx={{ my: 2 }}>{children}</Box>
+        </Container>
         {showNav ? (
           <Paper
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
@@ -32,9 +34,14 @@ export default function Layout({ children }: { children: any }) {
                 router.push(pages[newValue]);
               }}
             >
-              <BottomNavigationAction label="Citáty" icon={<FormatQuote />} />
-              <BottomNavigationAction label="Vytvořit" icon={<Add />} />
-              <BottomNavigationAction label="Oblíbené" icon={<Favorite />} />
+              <BottomNavigationAction label="Citáty" icon={<FormatQuote />} disabled={router.route === "/"} />
+              <BottomNavigationAction label="Vytvořit" icon={<Add />} disabled={router.route === "/create"} />
+              <BottomNavigationAction
+                label="Oblíbené"
+                icon={<Favorite />}
+                disabled
+                sx={{ color: "lightgray" }}
+              />
             </BottomNavigation>
           </Paper>
         ) : null}

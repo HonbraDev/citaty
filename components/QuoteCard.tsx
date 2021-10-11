@@ -31,7 +31,7 @@ export default function QuoteCard({
         <ConditionalWrapper
           condition={!disableLink}
           wrapper={(children) => (
-            <Link href={`/${quote.id}`} style={{ color: "inherit" }}>
+            <Link href={`/quote/${quote.id}`} style={{ color: "inherit" }}>
               <ButtonBase sx={{ width: "100%" }}>{children}</ButtonBase>
             </Link>
           )}
@@ -61,7 +61,7 @@ export default function QuoteCard({
                   .share({
                     title: "Mensa citáty",
                     text: quote.text,
-                    url: `https://citaty.honbra.com/${quote.id}`,
+                    url: `https://citaty.honbra.com/quote/${quote.id}`,
                   })
                   .then(() => console.log("Successful share"))
                   .catch((error) => console.log("Error sharing:", error));
@@ -72,7 +72,7 @@ export default function QuoteCard({
           >
             <Share />
           </IconButton>
-          <IconButton onClick={() => setFav((f) => !f)}>
+          <IconButton onClick={() => setFav((f) => !f)} disabled>
             {fav ? <Favorite /> : <FavoriteBorder />}
           </IconButton>
         </CardActions>
