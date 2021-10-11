@@ -1,7 +1,7 @@
 import getQuote from "../../src/database/getQuote";
-import getQuoteIds from "../../src/database/getQuoteIds";
+// import getQuoteIds from "../../src/database/getQuoteIds";
 import type { Quote as QuoteType } from "../../src/types";
-import type { GetStaticProps, GetStaticPaths } from "next";
+import type { /* GetStaticPaths, */ GetServerSideProps } from "next";
 import pageTitle from "../../src/pageTitle";
 
 import { Box, Typography, IconButton } from "@mui/material";
@@ -33,7 +33,7 @@ export default function Quote({ quote }: { quote: QuoteType }) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (query) => {
+export const getServerSideProps: GetServerSideProps = async (query) => {
   const quote = await getQuote((query.params as any).id);
 
   return {
@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async (query) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+/* export const getStaticPaths: GetStaticPaths = async () => {
   const ids = await getQuoteIds();
 
   return {
@@ -52,3 +52,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: "blocking",
   };
 };
+ */
