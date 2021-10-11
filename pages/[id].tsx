@@ -29,7 +29,7 @@ export default function Quote({ quote }: { quote: QuoteType }) {
             Citát
           </Typography>
         </Box>
-        <QuoteCard quote={quote} disableLink />
+        <QuoteCard quote={quote} disableLink borderless />
       </Box>
     </>
   );
