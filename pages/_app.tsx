@@ -7,6 +7,8 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 import Layout from "../components/Layout";
+import NProgress from "next-nprogress/component";
+import pageTitle from "../src/pageTitle";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -20,9 +22,11 @@ export default function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>My page</title>
+        <title>{pageTitle}</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+      <NProgress />
+
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout>
