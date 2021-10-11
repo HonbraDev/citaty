@@ -10,6 +10,7 @@ import {
 import { Share, Favorite, FavoriteBorder } from "@mui/icons-material";
 import type { Quote } from "../src/types";
 import Link from "./Link";
+import ConditionalWrapper from "./ConditionalWrapper";
 
 export default function QuoteCard({
   quote,
@@ -21,27 +22,29 @@ export default function QuoteCard({
   const [fav, setFav] = useState(false);
   return (
     <Card variant="outlined">
-      <Link
-        href={disableLink ? "" : `/${quote.id}`}
-        style={{ color: "inherit" }}
+      <ConditionalWrapper
+        condition={!disableLink}
+        wrapper={(children) => (
+          <Link href={`/${quote.id}`} style={{ color: "inherit" }}>
+            <ButtonBase sx={{ width: "100%" }}>{children}</ButtonBase>
+          </Link>
+        )}
       >
-        <ButtonBase sx={{ width: "100%" }}>
-          <CardContent>
-            <Typography
-              variant="h6"
-              component="h3"
-              gutterBottom
-              sx={{ fontStyle: "italic" }}
-            >
-              " {quote.text} "
-            </Typography>
-            <Typography variant="body1" component="h4">
-              {quote.person.legalName}
-              {quote.person.legalName.endsWith(".") ? "" : ","} {quote.year}
-            </Typography>
-          </CardContent>
-        </ButtonBase>
-      </Link>
+        <CardContent sx={{ textAlign: "center", textDecoration: "none" }}>
+          <Typography
+            variant="h6"
+            component="h3"
+            gutterBottom
+            sx={{ fontStyle: "italic" }}
+          >
+            " {quote.text} "
+          </Typography>
+          <Typography variant="body1" component="h4">
+            {quote.person.legalName}
+            {quote.person.legalName.endsWith(".") ? "" : ","} {quote.year}
+          </Typography>
+        </CardContent>
+      </ConditionalWrapper>
       <CardActions>
         <IconButton
           /* iOS Safari is stupid */
