@@ -9,6 +9,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "^5.0.1",
     "@mui/material": "latest",
+    "@supabase/supabase-js": "^1.24.0",
     "clsx": "latest",
     "next": "latest",
     "react": "latest",
