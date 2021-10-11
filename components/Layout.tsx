@@ -34,8 +34,16 @@ export default function Layout({ children }: { children: any }) {
                 router.push(pages[newValue]);
               }}
             >
-              <BottomNavigationAction label="Citáty" icon={<FormatQuote />} disabled={router.route === "/"} />
-              <BottomNavigationAction label="Vytvořit" icon={<Add />} disabled={router.route === "/create"} />
+              <BottomNavigationAction
+                label="Citáty"
+                icon={<FormatQuote />}
+                disabled={router.route === "/"}
+              />
+              <BottomNavigationAction
+                label="Vytvořit"
+                icon={<Add />}
+                disabled={router.route === "/create"}
+              />
               <BottomNavigationAction
                 label="Oblíbené"
                 icon={<Favorite />}

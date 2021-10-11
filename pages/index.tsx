@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import QuoteList from "../components/QuoteList";
 import type { Quote } from "../src/types";
 import getQuotes from "../src/database/getQuotes";
-import type { GetServerSideProps } from "next";
+import type { GetStaticProps } from "next";
 import pageTitle from "../src/pageTitle";
 
 export default function Index({ quotes }: { quotes: Quote[] }) {
@@ -16,8 +16,10 @@ export default function Index({ quotes }: { quotes: Quote[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const quotes = await getQuotes();
+
+  console.log("index", quotes);
 
   return {
     props: {

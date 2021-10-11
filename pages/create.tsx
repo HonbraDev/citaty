@@ -27,7 +27,6 @@ export default function Create({
   peopleObject: Record<string, PrivatePerson>;
 }) {
   const router = useRouter();
-  
 
   return (
     <>
@@ -51,7 +50,7 @@ export default function Create({
               "content-type": "application/json",
             },
             body: JSON.stringify(data),
-          })
+          });
 
           if (!fetched.ok) return console.error(await fetched.json());
 

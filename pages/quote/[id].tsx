@@ -36,11 +36,12 @@ export default function Quote({ quote }: { quote: QuoteType }) {
 export const getServerSideProps: GetServerSideProps = async (query) => {
   const quote = await getQuote((query.params as any).id);
 
+  console.log("[id]", query.params, quote);
+
   return {
     props: {
       quote,
     },
-    revalidate: 10,
   };
 };
 
