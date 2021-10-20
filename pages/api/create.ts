@@ -25,7 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     await schema.validateAsync(body);
 
-    const { data, error } = await quotesTable.insert({
+    const { data, error } = await quotesTable().insert({
       id: generateUUID(),
       text: body.text,
       person: body.personId,
