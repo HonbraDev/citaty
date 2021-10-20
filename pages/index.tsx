@@ -19,8 +19,6 @@ export default function Index({ quotes }: { quotes: Quote[] }) {
 export const getStaticProps: GetStaticProps = async () => {
   const quotes = await getQuotes();
 
-  console.log("index", quotes);
-
   return {
     props: {
       quotes,

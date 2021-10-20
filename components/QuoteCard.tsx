@@ -22,6 +22,7 @@ export default function QuoteCard({
   borderless?: boolean;
 }) {
   const [fav, setFav] = useState(false);
+  const name = quote.person.discordNickname || quote.person.legalName;
   return (
     <ConditionalWrapper
       wrapper={(children) => <Card variant="outlined">{children}</Card>}
@@ -46,8 +47,8 @@ export default function QuoteCard({
               " {quote.text} "
             </Typography>
             <Typography variant="body1" component="h4">
-              {quote.person.legalName}
-              {quote.person.legalName.endsWith(".") ? "" : ","} {quote.year}
+              {name}
+              {name.endsWith(".") ? "" : ","} {quote.year}
             </Typography>
           </CardContent>
         </ConditionalWrapper>
@@ -63,8 +64,7 @@ export default function QuoteCard({
                     text: quote.text,
                     url: `https://citaty.honbra.com/quote/${quote.id}`,
                   })
-                  .then(() => console.log("Successful share"))
-                  .catch((error) => console.log("Error sharing:", error));
+                  .catch((error) => console.error("Error sharing:", error));
               } else {
                 alert("Sharing is not supported on your device.");
               }

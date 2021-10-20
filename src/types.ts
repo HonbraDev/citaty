@@ -10,14 +10,14 @@ export interface Person {
   id: string; // UUID
   schoolEmail: string;
   legalName: string;
-  discordId: string;
-  phoneNumber: string;
-  joinedDiscordServer: boolean;
-  minecraftId: string; // UUID
-  discordNickPrefix: string;
-  discordNickname: string;
   type: PersonType["id"];
   active: boolean;
+  discordId?: string;
+  phoneNumber?: string;
+  joinedDiscordServer: boolean;
+  minecraftId?: string; // UUID
+  discordNickPrefix?: string;
+  discordNickname?: string;
 }
 
 export type PersonType =
