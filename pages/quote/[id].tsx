@@ -1,22 +1,23 @@
 import getQuote from "../../src/database/getQuote";
-// import getQuoteIds from "../../src/database/getQuoteIds";
 import type { Quote as QuoteType } from "../../src/types";
 import type { /* GetStaticPaths, */ GetServerSideProps } from "next";
-import pageTitle from "../../src/pageTitle";
-
 import { Box, Typography, IconButton } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import QuoteCard from "../../components/QuoteCard";
 import Head from "next/head";
 import Link from "../../components/Link";
+import SeoTags from "../../components/SeoTags";
 
 export default function Quote({ quote }: { quote: QuoteType }) {
+  const name = quote.person.discordNickPrefix || quote.person.legalName;
   return (
     <>
       <Head>
-        <title>
-          "{quote.text}" - {pageTitle}
-        </title>
+        <SeoTags
+          description={`"${quote.text}" ~ ${name}${
+            name.endsWith(".") ? "" : ","
+          } ${quote.year}`}
+        />
       </Head>
       <Box sx={{ display: "flex", gap: 2 }}>
         <Link href="/">

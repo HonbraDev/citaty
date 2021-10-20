@@ -22,7 +22,7 @@ export default function QuoteCard({
   borderless?: boolean;
 }) {
   const [fav, setFav] = useState(false);
-  const name = quote.person.discordNickname || quote.person.legalName;
+  const name = quote.person.discordNickPrefix || quote.person.legalName;
   return (
     <ConditionalWrapper
       wrapper={(children) => <Card variant="outlined">{children}</Card>}

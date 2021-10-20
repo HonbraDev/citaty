@@ -8,11 +8,11 @@ import {
 } from "@mui/material";
 import { Formik } from "formik";
 import Head from "next/head";
-import pageTitle from "../src/pageTitle";
 import type { GetStaticProps } from "next";
 import getPeople from "../src/database/getPeople";
 import { Person } from "../src/types";
 import { useRouter } from "next/router";
+import SeoTags from "../components/SeoTags";
 
 type PrivatePerson = {
   id: Person["id"];
@@ -31,7 +31,7 @@ export default function Create({
   return (
     <>
       <Head>
-        <title>Vytvořit citát - {pageTitle}</title>
+        <SeoTags description="Vytvořit citát" />
       </Head>
       <Typography variant="h4" component="h1" gutterBottom>
         Vytvořit citát
