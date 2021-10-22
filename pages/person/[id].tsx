@@ -1,38 +1,45 @@
-import type { NewQuote as QuoteType } from "../../src/types";
 import type { GetServerSideProps } from "next";
-import getQuote from "../../src/database/getQuote";
+import type { NewQuote as QuoteType } from "../../src/types";
 import { Box, Typography } from "@mui/material";
-import QuoteCard from "../../components/QuoteCard";
 import Head from "next/head";
 import SeoTags from "../../components/SeoTags";
+import getQuotesByPerson from "../../src/database/getQuotesByPerson";
+import QuoteList from "../../components/QuoteList";
 import BackButton from "../../components/BackButton";
 
-export default function Quote({ quote }: { quote: QuoteType }) {
+export default function Quote({
+  quotes,
+  person,
+}: {
+  quotes: QuoteType[];
+  person: { name: string };
+}) {
   return (
     <>
       <Head>
-        <SeoTags
-          description={`"${quote.text}" ~ ${quote.authorName} | ${quote.year}`}
-        />
+        <SeoTags description={person.name} />
       </Head>
       <Box sx={{ display: "flex", gap: 2 }}>
         <BackButton />
         <Typography variant="h4" component="h1" gutterBottom>
-          Citát
+          {quotes[0].authorName}
         </Typography>
       </Box>
-      <QuoteCard quote={quote} disableLink borderless />
+      <QuoteList quotes={quotes} />
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (query) => {
   try {
-    const quote = await getQuote((query.params as any).id);
+    const quotes = await getQuotesByPerson((query.params as any).id);
 
     return {
       props: {
-        quote,
+        quotes,
+        person: {
+          name: quotes[0].authorName,
+        },
       },
     };
   } catch (e) {

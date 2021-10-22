@@ -34,7 +34,7 @@ export type PersonType =
       label: string;
     };
 
-export interface Quote {
+export interface OldQuote {
   id: string; // UUID
   year: number;
   createdAt: string; // 2021-10-11T12:14:55
@@ -48,4 +48,12 @@ export interface QuoteTableType {
   createdAt: string;
   text: string;
   person: string; // UUID
+}
+
+export interface NewQuote {
+  text: string;
+  authorName: string;
+  authorId: string;
+  year: number;
+  id: string;
 }

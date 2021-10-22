@@ -1,4 +1,4 @@
-import type { Quote } from "../src/types";
+import type { NewQuote } from "../src/types";
 import { Box, BoxProps } from "@mui/material";
 import QuoteCard from "./QuoteCard";
 
@@ -7,7 +7,7 @@ export default function QuoteList({
   sx,
   disableLink = false,
   ...props
-}: { quotes: Quote[] } & BoxProps & { disableLink?: boolean }) {
+}: { quotes: NewQuote[] } & BoxProps & { disableLink?: boolean }) {
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", gap: 2, ...sx }}

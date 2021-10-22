@@ -8,21 +8,30 @@ import {
   ButtonBase,
 } from "@mui/material";
 import { Share, Favorite, FavoriteBorder } from "@mui/icons-material";
-import type { Quote } from "../src/types";
+import type { NewQuote } from "../src/types";
 import Link from "./Link";
 import ConditionalWrapper from "./ConditionalWrapper";
+import { styled } from "@mui/system";
+
+const QuoteTypography = styled(Typography)`
+  &:before {
+    content: '" ';
+  }
+  &:after {
+    content: ' "';
+  }
+`;
 
 export default function QuoteCard({
   quote,
   disableLink = false,
   borderless = false,
 }: {
-  quote: Quote;
+  quote: NewQuote;
   disableLink?: boolean;
   borderless?: boolean;
 }) {
   const [fav, setFav] = useState(false);
-  const name = quote.person.discordNickPrefix || quote.person.legalName;
   return (
     <ConditionalWrapper
       wrapper={(children) => <Card variant="outlined">{children}</Card>}
@@ -32,23 +41,24 @@ export default function QuoteCard({
         <ConditionalWrapper
           condition={!disableLink}
           wrapper={(children) => (
-            <Link href={`/quote/${quote.id}`} style={{ color: "inherit" }}>
+            <Link
+              href={`/quote/${quote.id}`}
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
               <ButtonBase sx={{ width: "100%" }}>{children}</ButtonBase>
             </Link>
           )}
         >
           <CardContent sx={{ textAlign: "center", textDecoration: "none" }}>
-            <Typography
+            <QuoteTypography
               variant="h6"
-              component="h3"
               gutterBottom
               sx={{ fontStyle: "italic" }}
             >
-              " {quote.text} "
-            </Typography>
+              {quote.text}
+            </QuoteTypography>
             <Typography variant="body1" component="h4">
-              {name}
-              {name.endsWith(".") ? "" : ","} {quote.year}
+              {quote.authorName} | {quote.year}
             </Typography>
           </CardContent>
         </ConditionalWrapper>
@@ -61,7 +71,9 @@ export default function QuoteCard({
                 navigator
                   .share({
                     title: "Mensa citáty",
-                    text: quote.text,
+                    text: `"quote.text"${"\n"}~ ${quote.authorName} | ${
+                      quote.year
+                    }`,
                     url: `https://citaty.honbra.com/quote/${quote.id}`,
                   })
                   .catch((error) => console.error("Error sharing:", error));

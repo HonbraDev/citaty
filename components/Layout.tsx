@@ -37,12 +37,12 @@ export default function Layout({ children }: { children: any }) {
               <BottomNavigationAction
                 label="Citáty"
                 icon={<FormatQuote />}
-                disabled={router.route === "/"}
+                onMouseEnter={() => router.prefetch(pages[0])}
               />
               <BottomNavigationAction
                 label="Vytvořit"
                 icon={<Add />}
-                disabled={router.route === "/create"}
+                onMouseEnter={() => router.prefetch(pages[1])}
               />
               <BottomNavigationAction
                 label="Oblíbené"

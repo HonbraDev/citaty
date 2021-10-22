@@ -1,13 +1,13 @@
 import { Typography } from "@mui/material";
 import QuoteList from "../components/QuoteList";
-import type { Quote } from "../src/types";
 import getQuotes from "../src/database/getQuotes";
-import type { GetStaticProps } from "next";
 import pageTitle from "../src/pageTitle";
 import Head from "next/head";
 import SeoTags from "../components/SeoTags";
+import type { NewQuote } from "../src/types";
+import type { GetStaticProps } from "next";
 
-export default function Index({ quotes }: { quotes: Quote[] }) {
+export default function Index({ quotes }: { quotes: NewQuote[] }) {
   return (
     <>
       <Head>
@@ -28,6 +28,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       quotes,
     },
-    revalidate: 10,
+    revalidate: 5,
   };
 };
