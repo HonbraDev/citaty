@@ -18,6 +18,7 @@ export interface Person {
   minecraftId?: string; // UUID
   discordNickPrefix?: string;
   discordNickname?: string;
+  propiskaCounnt: number;
 }
 
 export type PersonType =
